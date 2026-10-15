@@ -255,7 +255,7 @@
     if (lastBox) {
       const last = records[0];
       if (!last) {
-        lastBox.innerHTML = '<div class="empty"><span class="emoji">🎯</span>' +
+        lastBox.innerHTML = '<div class="empty">' +
           '<h3>还没有答题记录</h3><p>挑一个题库开始第一局，成绩会自动记在这里</p>' +
           '<a class="btn btn-primary" href="quiz.html?bank=cs">先来一局计算机基础</a></div>';
       } else {
@@ -310,7 +310,7 @@
     }
 
     if (!round.length) {
-      box.innerHTML = '<div class="empty"><span class="emoji">🎉</span>' +
+      box.innerHTML = '<div class="empty">' +
         '<h3>错题本是空的</h3><p>目前没有需要重练的题目，说明你最近答得不错</p>' +
         '<a class="btn btn-primary" href="index.html">回到首页选题库</a></div>';
       return;
@@ -432,7 +432,7 @@
         }
       });
 
-      const head = isRight ? '✅ 答对了' : (picked === -1 ? '⏰ 超时了' : '❌ 答错了');
+      const head = isRight ? '答对了' : (picked === -1 ? '超时了' : '答错了');
       elExplain.innerHTML = '<div class="head">' + head + '</div>' +
         '<p>正确答案是 ' + LETTERS[q.answer] + '：' + esc(q.options[q.answer]) +
         '　' + esc(q.explain) + '</p>';
@@ -559,7 +559,7 @@
 
     const r = store.get(KEY_LAST, null);
     if (!r) {
-      box.innerHTML = '<div class="empty"><span class="emoji">📄</span>' +
+      box.innerHTML = '<div class="empty">' +
         '<h3>还没有本轮成绩</h3><p>先去做一局题，结果会自动显示在这里</p>' +
         '<a class="btn btn-primary" href="index.html">去选题库</a></div>';
       return;
@@ -610,7 +610,7 @@
               const hit = findQuestion(a.id);
               return wrongItemHTML(hit ? hit.question : a, a.picked, false);
             }).join('') + '</div>'
-          : '<div class="empty"><span class="emoji">🏆</span><h3>全部答对</h3>' +
+          : '<div class="empty"><h3>全部答对</h3>' +
             '<p>这个题库可以挑战满分速度了</p>' +
             '<a class="btn btn-primary" href="rank.html">看看排行榜</a></div>') +
       '</section>';
@@ -644,8 +644,7 @@
     $('#btnPractice').style.display = items.length ? '' : 'none';
 
     if (!shown.length) {
-      listEl.innerHTML = '<div class="empty"><span class="emoji">' +
-        (items.length ? '🔍' : '🎉') + '</span><h3>' +
+      listEl.innerHTML = '<div class="empty"><h3>' +
         (items.length ? '这个题库没有错题' : '错题本是空的') + '</h3><p>' +
         (items.length ? '换个分类看看' : '答错的题目会自动收进这里，答对之后自动移出') +
         '</p><a class="btn btn-primary" href="index.html">去答题</a></div>';
@@ -722,7 +721,7 @@
     $('#rankBest').textContent = list.length ? best : '—';
 
     if (!list.length) {
-      listEl.innerHTML = '<div class="empty"><span class="emoji">🏁</span>' +
+      listEl.innerHTML = '<div class="empty">' +
         '<h3>还没有成绩记录</h3><p>每完成一局答题都会记到这里，按分数排出名次</p>' +
         '<a class="btn btn-primary" href="index.html">去答第一局</a></div>';
       return;
