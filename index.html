@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>闯关吧 · 校园知识问答站</title>
+  <meta name="description" content="三个题库共 45 道题，答完立刻出分，错题自动收进错题本，还能只练错题。打开就能玩，不需要注册。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="index">
+
+  <div class="notice">
+    <div class="container">
+      <span>📣 三个题库共 <b>45 道题</b>，答完立刻出分，错题会自动收进错题本</span>
+      <span class="notice-links">
+        <a href="rank.html">排行榜</a>
+        <a href="wrong.html">错题本</a>
+      </span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">⚡</span>
+        <span>闯关吧<small>校园知识问答站</small></span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">首页</a>
+        <a href="quiz.html">开始答题</a>
+        <a href="wrong.html">错题本</a>
+        <a href="rank.html">排行榜</a>
+        <a href="about.html">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn js-theme" title="切换深浅色">☀️</button>
+        <button class="icon-btn nav-toggle" title="展开菜单">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>把考点刷成<span class="hl">肌肉记忆</span></h1>
+        <p class="lead">
+          选一个题库，每题限时 20 秒，答完立刻判分。答错的题自动进错题本，
+          下次可以只练错题，答对了它自己就消失。不用注册，打开就能玩。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="quiz.html?bank=cs">⚡ 立即开一局</a>
+          <a class="btn btn-ghost btn-lg" href="rank.html">🏆 看看排行榜</a>
+        </div>
+
+        <div class="stat-row" style="margin-top:32px">
+          <div class="stat-card" style="--i:0">
+            <div class="num" id="statTotal">45</div>
+            <div class="label">题库总题数（道）</div>
+          </div>
+          <div class="stat-card" style="--i:1">
+            <div class="num" id="statRounds">0</div>
+            <div class="label">我已经完成的轮次</div>
+          </div>
+          <div class="stat-card" style="--i:2">
+            <div class="num" id="statWrong">0</div>
+            <div class="label">错题本里的题目</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container page">
+
+      <section class="section">
+        <div class="section-head">
+          <h2>选一个题库开始</h2>
+          <a class="more" href="wrong.html">先去清错题 →</a>
+        </div>
+        <div class="bank-grid" id="bankGrid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>最近一次成绩</h2>
+          <a class="more" href="rank.html">全部记录 →</a>
+        </div>
+        <div id="lastBox"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>怎么玩</h2></div>
+        <div class="step-grid">
+          <div class="panel">
+            <div style="font-size:26px">🎯</div>
+            <h3 style="font-size:16px;margin:10px 0 6px">选一个题库</h3>
+            <p class="sub" style="font-size:13.5px">计算机基础、校园安全、四六级词汇，每个题库 15 道单选题。</p>
+          </div>
+          <div class="panel">
+            <div style="font-size:26px">⏱️</div>
+            <h3 style="font-size:16px;margin:10px 0 6px">每题 20 秒</h3>
+            <p class="sub" style="font-size:13.5px">右上角的圆环就是倒计时，时间到自动按答错处理。</p>
+          </div>
+          <div class="panel">
+            <div style="font-size:26px">✅</div>
+            <h3 style="font-size:16px;margin:10px 0 6px">立刻看到对错</h3>
+            <p class="sub" style="font-size:13.5px">选完马上标出正确答案和解析，1.8 秒后自动进下一题。</p>
+          </div>
+          <div class="panel">
+            <div style="font-size:26px">🔁</div>
+            <h3 style="font-size:16px;margin:10px 0 6px">错题自动收集</h3>
+            <p class="sub" style="font-size:13.5px">答错进错题本，答对自动移出，还能只练错题。</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="index.html">
+            <span class="brand-logo">⚡</span>
+            <span>闯关吧<small>校园知识问答站</small></span>
+          </a>
+          <p>把复习做成闯关：限时答题、即时判分、错题重练，一个页面就能练完一个考点。</p>
+          <span class="badge badge-brand">课程作业 · 前端实现</span>
+        </div>
+        <div>
+          <h4>题库</h4>
+          <ul>
+            <li><a href="quiz.html?bank=cs">计算机基础</a></li>
+            <li><a href="quiz.html?bank=safety">校园安全</a></li>
+            <li><a href="quiz.html?bank=cet">四六级核心词</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>常用功能</h4>
+          <ul>
+            <li><a href="quiz.html?bank=cs">开始答题</a></li>
+            <li><a href="wrong.html">错题本</a></li>
+            <li><a href="rank.html">排行榜</a></li>
+            <li><a href="result.html">本轮成绩</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>帮助</h4>
+          <ul>
+            <li><a href="about.html">关于本站</a></li>
+            <li><a href="about.html#tech">技术说明</a></li>
+            <li><a href="about.html#rules">答题规则</a></li>
+            <li><a href="about.html#log">更新日志</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span class="js-year">2026</span> 闯关吧 · 校园知识问答站</span>
+        <span>本站为课程作业演示项目，题目与成绩均保存在本机浏览器中</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

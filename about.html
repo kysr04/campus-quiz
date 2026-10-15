@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>关于本站 - 闯关吧</title>
+  <meta name="description" content="闯关吧的建站目的、答题规则、技术实现说明与考核点对照。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+
+  <div class="notice">
+    <div class="container">
+      <span>📄 这一页用来说明<b>建站目的</b>与<b>技术实现</b>，方便老师查看设计思路</span>
+      <span class="notice-links">
+        <a href="#tech">技术说明</a>
+        <a href="#map">评分点对照</a>
+      </span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">⚡</span>
+        <span>闯关吧<small>校园知识问答站</small></span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">首页</a>
+        <a href="quiz.html">开始答题</a>
+        <a href="wrong.html">错题本</a>
+        <a href="rank.html">排行榜</a>
+        <a href="about.html">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn js-theme" title="切换深浅色">☀️</button>
+        <button class="icon-btn nav-toggle" title="展开菜单">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page">
+
+    <nav class="breadcrumb">
+      <a href="index.html">首页</a>
+      <span class="sep">/</span>
+      <span class="current">关于本站</span>
+    </nav>
+
+    <div class="page-head">
+      <h1>关于「闯关吧」</h1>
+      <p class="sub">一个校园知识问答闯关网站 · 纯前端实现 · 不需要注册登录</p>
+    </div>
+
+    <section class="section">
+      <div class="section-head"><h2>一、为什么要做这个网站</h2></div>
+      <div class="panel prose">
+        <p>复习这件事最容易卡在两个地方：一是不想开始，二是不清楚自己到底哪里不会。</p>
+        <p>对着课本从头看到尾，往往翻两页就放下了；就算看完了，也很难说清哪些知识点是真的记住了，
+          哪些只是看着眼熟。等问题暴露出来，往往已经临近考试。</p>
+        <p>我把复习做成了闯关：<b>选出答案的那一刻就知道对错，答错的题自动收进错题本，
+          下次可以只练错题，答对之后它自己就消失。</b>整个流程不需要注册、不需要提交任何个人信息，
+          打开网页就能开始，做完一轮只要三四分钟。</p>
+        <p>这份说明介绍网站的整体结构、页面跳转、交互功能和样式实现的思路与做法，
+          并附上运行截图和测试记录。</p>
+      </div>
+    </section>
+
+    <section class="section" id="rules">
+      <div class="section-head"><h2>二、答题规则</h2></div>
+      <div class="panel">
+        <table class="map-table">
+          <thead>
+            <tr><th>规则</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>题目数量</td><td>每个题库 15 道单选题，一次做完一轮</td></tr>
+            <tr><td>答题时间</td><td>每题限时 20 秒，超时按答错处理并自动进入下一题</td></tr>
+            <tr><td>计分方式</td><td>满分 100 分，按答对比例换算，90 分以上为 A 级</td></tr>
+            <tr><td>题目顺序</td><td>每一轮的题目顺序随机打乱，重玩不会一成不变</td></tr>
+            <tr><td>错题本</td><td>答错自动加入，答对自动移出，也可以手动标记为已掌握</td></tr>
+            <tr><td>快捷操作</td><td>键盘按 1-4 或 A-D 选择答案，回车进入下一题</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="tech">
+      <div class="section-head"><h2>三、技术实现说明</h2></div>
+      <div class="panel prose">
+        <p><b>技术栈：</b>HTML5 + CSS3 + 原生 JavaScript（ES6），不使用任何框架和第三方库，
+          双击 <code>index.html</code> 就能在浏览器里运行。</p>
+        <p><b>答题状态机：</b>一轮答题有三个状态：答题中、已作答、已结束。每道题只接受一次作答，
+          避免连点造成重复计分；作答后所有选项整体禁用，同时把正确答案和用户的选择分别标色。</p>
+        <p><b>倒计时：</b>用定时器每 100 毫秒刷新一次剩余时间，再把它换算成 SVG 圆环的描边进度，
+          剩余时间少于 5 秒时圆环和数字变成警示色，时间归零自动按答错处理。</p>
+        <p><b>判分与统计：</b>每题的作答结果记录在一个数组里，一轮结束后按答对比例换算成百分制分数，
+          再按分数区间给出 A 到 D 的评级。</p>
+        <p><b>数据存储：</b>错题本、成绩记录和当前主题都存在浏览器 localStorage 中，
+          刷新和换页都不会丢失；读写都做了异常处理，浏览器禁用本地存储时会退回内存保存，页面不会报错。</p>
+        <p><b>题目乱序：</b>用洗牌算法打乱每一轮的题目顺序，选项顺序刻意保持不动，
+          避免"以上都不对"这类选项被洗到中间导致逻辑出错。</p>
+        <p><b>文件结构：</b>6 个 HTML 页面、1 个公共样式表、2 个 JavaScript 文件
+          （<code>data.js</code> 放题库数据，<code>app.js</code> 放全部交互逻辑），
+          所有页面共用同一套页头和页脚。</p>
+      </div>
+    </section>
+
+    <section class="section" id="map">
+      <div class="section-head"><h2>四、功能与考核点对照</h2></div>
+      <div class="panel">
+        <table class="map-table">
+          <thead>
+            <tr><th>考核点</th><th>本站对应的实现</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>设计目的</td><td>用闯关的方式帮同学自测复习：即时判分、错题自动收集、可以只练错题</td></tr>
+            <tr><td>跳转</td><td>6 个页面互相连通：导航栏、面包屑、题库卡片进答题、结果页去错题本、错题本再练一局、页脚链接、返回顶部</td></tr>
+            <tr><td>交互</td><td>限时倒计时、选项判定、即时反馈、自动进下一题、计分评级、错题本增删、成绩记录与排序、深浅色切换、键盘快捷操作</td></tr>
+            <tr><td>CSS</td><td>变量与双主题、Grid 与 Flex 布局、SVG 圆环进度、正确与错误状态配色、悬浮与淡入动效、三档响应式断点</td></tr>
+            <tr><td>整体效果</td><td>统一的深色游戏化视觉、每个题库一套渐变色、状态反馈明确、空状态提示完整</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="log">
+      <div class="section-head"><h2>五、更新日志</h2></div>
+      <div class="panel prose">
+        <p><b>v1.0</b>（2026-10-13）：完成 6 个页面、三个题库共 45 道题，
+          实现限时答题、即时判分、错题本、成绩排行榜与深浅色主题。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2>六、作者与声明</h2></div>
+      <div class="panel prose">
+        <p>课程：Web 前端技术上机作业　|　作者：<span class="badge badge-brand">请在这里填写你的姓名 / 学号 / 班级</span></p>
+        <p>本站为课程作业演示项目，题库内容仅用于自测练习，成绩记录只保存在本机浏览器中。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="index.html">
+            <span class="brand-logo">⚡</span>
+            <span>闯关吧<small>校园知识问答站</small></span>
+          </a>
+          <p>把复习做成闯关：限时答题、即时判分、错题重练，一个页面就能练完一个考点。</p>
+          <span class="badge badge-brand">课程作业 · 前端实现</span>
+        </div>
+        <div>
+          <h4>题库</h4>
+          <ul>
+            <li><a href="quiz.html?bank=cs">计算机基础</a></li>
+            <li><a href="quiz.html?bank=safety">校园安全</a></li>
+            <li><a href="quiz.html?bank=cet">四六级核心词</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>常用功能</h4>
+          <ul>
+            <li><a href="quiz.html?bank=cs">开始答题</a></li>
+            <li><a href="wrong.html">错题本</a></li>
+            <li><a href="rank.html">排行榜</a></li>
+            <li><a href="result.html">本轮成绩</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>帮助</h4>
+          <ul>
+            <li><a href="about.html">关于本站</a></li>
+            <li><a href="about.html#tech">技术说明</a></li>
+            <li><a href="about.html#rules">答题规则</a></li>
+            <li><a href="about.html#log">更新日志</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span class="js-year">2026</span> 闯关吧 · 校园知识问答站</span>
+        <span>本站为课程作业演示项目，题目与成绩均保存在本机浏览器中</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

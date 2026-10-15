@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>答题中 - 闯关吧</title>
+  <meta name="description" content="限时答题页：每题 20 秒，选完立刻判分并给出解析。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="quiz">
+
+  <div class="notice">
+    <div class="container">
+      <span>⏱️ 每题限时 <b>20 秒</b>，超时按答错处理；键盘按 1-4 或 A-D 也能作答</span>
+      <span class="notice-links">
+        <a href="index.html">换个题库</a>
+        <a href="wrong.html">错题本</a>
+      </span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">⚡</span>
+        <span>闯关吧<small>校园知识问答站</small></span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">首页</a>
+        <a href="quiz.html">开始答题</a>
+        <a href="wrong.html">错题本</a>
+        <a href="rank.html">排行榜</a>
+        <a href="about.html">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn js-theme" title="切换深浅色">☀️</button>
+        <button class="icon-btn nav-toggle" title="展开菜单">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page">
+
+    <nav class="breadcrumb">
+      <a href="index.html">首页</a>
+      <span class="sep">/</span>
+      <span class="current">答题中</span>
+    </nav>
+
+    <div class="quiz-bar">
+      <span class="counter" id="counter">第 <b>1</b> / 15 题</span>
+      <div class="progress"><i id="progressBar" style="width:0"></i></div>
+      <div class="timer" id="timer">
+        <svg width="62" height="62" viewBox="0 0 62 62">
+          <circle class="ring-bg" cx="31" cy="31" r="26"></circle>
+          <circle class="ring-fg" id="timerRing" cx="31" cy="31" r="26"></circle>
+        </svg>
+        <span class="num" id="timerNum">20</span>
+      </div>
+      <button class="btn btn-sm btn-ghost" id="btnQuit">结束本轮</button>
+    </div>
+
+    <div id="quizBox">
+      <div class="question-card">
+        <div class="tag-row" id="tagRow"></div>
+        <h1 class="question-text" id="questionText">正在加载题目…</h1>
+        <div class="options" id="options"></div>
+        <div class="explain" id="explain" style="display:none"></div>
+        <div class="answer-foot">
+          <span class="sub">提示：键盘按 1-4 或 A-D 也能作答</span>
+          <button class="btn btn-primary" id="btnNext" style="display:none">下一题 →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="index.html">
+            <span class="brand-logo">⚡</span>
+            <span>闯关吧<small>校园知识问答站</small></span>
+          </a>
+          <p>把复习做成闯关：限时答题、即时判分、错题重练，一个页面就能练完一个考点。</p>
+          <span class="badge badge-brand">课程作业 · 前端实现</span>
+        </div>
+        <div>
+          <h4>题库</h4>
+          <ul>
+            <li><a href="quiz.html?bank=cs">计算机基础</a></li>
+            <li><a href="quiz.html?bank=safety">校园安全</a></li>
+            <li><a href="quiz.html?bank=cet">四六级核心词</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>常用功能</h4>
+          <ul>
+            <li><a href="quiz.html?bank=cs">开始答题</a></li>
+            <li><a href="wrong.html">错题本</a></li>
+            <li><a href="rank.html">排行榜</a></li>
+            <li><a href="result.html">本轮成绩</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>帮助</h4>
+          <ul>
+            <li><a href="about.html">关于本站</a></li>
+            <li><a href="about.html#tech">技术说明</a></li>
+            <li><a href="about.html#rules">答题规则</a></li>
+            <li><a href="about.html#log">更新日志</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span class="js-year">2026</span> 闯关吧 · 校园知识问答站</span>
+        <span>本站为课程作业演示项目，题目与成绩均保存在本机浏览器中</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
